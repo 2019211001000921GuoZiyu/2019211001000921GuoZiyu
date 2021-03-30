@@ -1,6 +1,9 @@
 package com.example.GuoZiyu2019211001000921;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -20,6 +23,18 @@ public class HelloServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
+        String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        String url="jdbc:sqlserver://localhost;databaseName=userdb;";
+        String username="sa";
+        String password="admin123456789";
+
+        try {
+            Class.forName(driver);
+            Connection con= DriverManager.getConnection(url,username,password);
+            System.out.println("-->"+con);
+        }catch (ClassNotFoundException | SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public void destroy() {
