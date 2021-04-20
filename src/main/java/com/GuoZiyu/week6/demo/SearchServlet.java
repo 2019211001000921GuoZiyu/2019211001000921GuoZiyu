@@ -1,34 +1,37 @@
 package com.GuoZiyu.week6;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URLEncoder;
 
-@WebServlet(name = "SearchServlet", value="/search")
+@WebServlet("/search")
 public class SearchServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        String Text = request.getParameter("text");
+        String Select = request.getParameter("search");
+        //response.setContentType("text/html");
+        if (Text.equals("")) {
+            response.sendRedirect("home");
+        } else {
+            if (Select.equals("baidu")) {
+                response.sendRedirect("https://www.baidu.com/s?wd=" + Text);
+            } else if (Select.equals("bing")) {
+                response.sendRedirect("https://cn.bing.com/search?q=" + Text);
+            } else if (Select.equals("google")) {
+                response.sendRedirect("https://www.google.com/search?q=" + Text);
+            }
+
+        }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String txt = URLEncoder.encode(request.getParameter("txt"),"UTF-8");
-        String search = request.getParameter("search");
-        System.out.println(txt);
-        if (txt.equals("")) {
-            response.sendRedirect(request.getContextPath()+"/index.jsp");
-        }else {
-            if (search.equals("baidu")) {
-                response.sendRedirect("https://www.baidu.com/s?wd="+txt);
-            }else if(search.equals("bing")) {
-                response.sendRedirect("https://cn.bing.com/search?q="+txt);
-            }else if(search.equals("google")) {
-                response.sendRedirect("https://www.google.com/search?q="+txt);
-            }
-        }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }
