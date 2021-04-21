@@ -8,19 +8,19 @@
     <!--
        <servlet>
            <servlet-name>EXPECT^</servlet-name>
-           <servlet-class>com.GuoZiyu.Week2.FirstTryServlet</servlet-class>
+           <servlet-class>com.ZhangZhenbin.Week2.FirstTryServlet</servlet-class>
        </servlet>
        <servlet>
            <servlet-name>LifeCycleServlet</servlet-name>
-           <servlet-class>com.GuoZiyu.Week3.LifeCycleServlet</servlet-class>
+           <servlet-class>com.ZhangZhenbin.Week3.LifeCycleServlet</servlet-class>
        </servlet>
        <servlet>
            <servlet-name>RegisterServlet</servlet-name>
-           <servlet-class>com.GuoZiyu.Week3.RegisterServlet</servlet-class>
+           <servlet-class>com.ZhangZhenbin.Week3.RegisterServlet</servlet-class>
        </servlet>
        <servlet>
            <servlet-name>JDBCDemonServlet</servlet-name>
-           <servlet-class>com.GuoZiyu.Week4.JDBCDemonServlet</servlet-class>
+           <servlet-class>com.ZhangZhenbin.Week4.JDBCDemonServlet</servlet-class>
            <init-param>
                <param-name>driver</param-name>
                <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
@@ -41,7 +41,7 @@
        </servlet>
        <servlet>
            <servlet-name>ConfigDemonServlet</servlet-name>
-           <servlet-class>com.GuoZiyu.Week4.ConfigDemonServlet</servlet-class>
+           <servlet-class>com.ZhangZhenbin.Week4.ConfigDemonServlet</servlet-class>
        </servlet>
        <servlet-mapping>
            <servlet-name>EXPECT^</servlet-name>
@@ -82,6 +82,11 @@
         <param-value>123456789</param-value>
     </context-param>
 
+
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+
+    </welcome-file-list>
 
 
 </web-app>
