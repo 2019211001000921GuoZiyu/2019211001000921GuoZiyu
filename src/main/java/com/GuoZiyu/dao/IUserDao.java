@@ -1,3 +1,4 @@
+
 package com.GuoZiyu.dao;
 
 import com.GuoZiyu.model.User;
@@ -11,7 +12,6 @@ public interface IUserDao {
     public int saveUser(Connection con, User user) throws SQLException;
     public int deleteUser(Connection con, User user) throws SQLException;
     public int updateUser(Connection con, User user) throws SQLException;
-
     public User findById(Connection con, Integer id) throws SQLException;
     public User findByUsernamePassword(Connection con, String username,String password) throws SQLException;
     public List<User> findByUsername(Connection con, String username) throws SQLException;
@@ -23,4 +23,3 @@ public interface IUserDao {
 
 
 }
-© 2021 GitHub, Inc.

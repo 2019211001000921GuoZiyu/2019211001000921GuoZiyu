@@ -11,11 +11,10 @@ import java.sql.SQLException;
 
 
 public class UserDao implements IUserDao{
-
     @Override
     public int saveUser(Connection con, User user) throws SQLException {
         //insert
-        String sql ="insert into userdb.dbo.usertable value(?,?,?,?,?)";
+        String sql ="insert into userdb.usertable value (?,?,?,?,?)";
         PreparedStatement st = con.prepareStatement(sql);
         st.setInt(1,user.getId());
         st.setString(2,user.getUsername());
@@ -39,29 +38,22 @@ public class UserDao implements IUserDao{
     @Override
     public int updateUser(Connection con, User user) throws SQLException {
         //update..where id=?
-        String updateUser ="update userdb.dbo.usertable set id=?,username=?,password=?,email=?,gender=?,birthdate=?";
-        PreparedStatement st = con.prepareStatement(updateUser);
-        st.setInt(1,user.getId());
-        st.setString(2,user.getUsername());
-        st.setString(3,user.getPassword());
-        st.setString(4,user.getEmail());
-        st.setString(5,user.getGender());
-        st.setDate(6, (java.sql.Date) user.getBirthdate());
-        ResultSet rs = st.executeQuery();
-        user = null;
-        if(rs.next()){
-            user = new User();
-            user.setId(rs.getInt("id"));
-            user.setUsername(rs.getString("username"));
-            user.setPassword(rs.getString("password"));
-            user.setEmail(rs.getString("email"));
-            user.setGender(rs.getString("gender"));
-            user.setBirthdate(rs.getDate("birthdate"));
-        }
-        return 0;
+        String sql = "update userdb.dbo.usertable set username=? , password=?,email=?, gender=?, birthdate=? where id=?";
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setString(1,user.getUsername());
+        st.setString(2,user.getPassword());
+        st.setString(3,user.getEmail());
+        st.setString(4,user.getGender());
+        // st.setDate(6, (java.sql.Date) user.getBirthdate());
+        // new java.sql.Date(user.getBirthdate().getTime())
+        st.setDate(5, new java.sql.Date(user.getBirthdate().getTime()));
+        st.setInt(6,user.getId());
+
+        int rs = st.executeUpdate();
+
+        return rs;
+
     }
-
-
 
 
     @Override
