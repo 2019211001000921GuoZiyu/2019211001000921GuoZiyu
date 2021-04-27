@@ -1,4 +1,4 @@
-<%@ page import="com.ZhangZhenbin.model.User" %><%--
+<%@ page import="com.GuoZiyu.model.User" %><%--
   Created by IntelliJ IDEA.
   User: new
   Date: 2021/4/11
@@ -7,25 +7,36 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="header.jsp"%>
+<%
+    User u=(User) session.getAttribute("user");
+%>
+
 <h1>User Info</h1>
 <%
-    User user=(User)request.getAttribute("user");
+    Cookie [] allCookies=request.getCookies();
+    for (Cookie c:allCookies){
+        out.println("<br/>"+c.getName()+"---"+c.getValue());
+    }
+%>
+<%
+    //User user=(User)request.getAttribute("user");
 %>
 <table>
     <tr>
-        <td>Username:</td><td><%=user.getUsername()%></td>
+        <td>Username:</td><td><%=u.getUsername()%></td>
     </tr>
     <tr>
-        <td>Password:</td><td><%=user.getPassword()%></td>
+        <td>Password:</td><td><%=u.getPassword()%></td>
     </tr>
     <tr>
-        <td>Email:</td><td><%=user.getEmail()%></td>
+        <td>Email:</td><td><%=u.getEmail()%></td>
     </tr>
     <tr>
-        <td>Gender:</td><td><%=user.getGender()%></td>
+        <td>Gender:</td><td><%=u.getGender()%></td>
     </tr>
     <tr>
-        <td>Birthdate:</td><td><%=user.getBirthdate()%></td>
+        <td>Birthdate:</td><td><%=u.getBirthdate()%></td>
     </tr>
 </table>
+<a href="UpdateUser">Update</a>
 <%@include file="footer.jsp"%>
