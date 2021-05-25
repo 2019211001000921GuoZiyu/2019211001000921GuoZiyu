@@ -2,11 +2,9 @@ package com.GuoZiyu.dao;
 
 import com.GuoZiyu.model.Product;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-
 
 
 public interface IProductDao {
