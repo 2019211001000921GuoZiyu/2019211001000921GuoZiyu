@@ -1,22 +1,35 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: SARA
-  Date: 2021/4/5
-  Time: 16:23
+  User: Lenovo
+  Date: 5/15/2021
+  Time: 11:30 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@include file="header.jsp"%>
-<%
-    if(!(request.getAttribute("message") ==null)){
-        out.print("<h3>"+request.getAttribute("message")+"<h3>");
-    }
-%>
-<form style="text-align: center;background: #9932CD" method="post" action="login">
-    <h1 style="text-align: center;color: #ff00ff">login</h1>
-    username:<input type="text" name="username"><br/>
-    password:<input type="password" name="password"><br/>
-    <%--    <input type="text" name="username" value="" placeholder="username"></br></br>--%>
-    <%--    <input type="password" name="password" value="" placeholder="password"></br></br>--%>
-    <input type="submit" name="login" value="login">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+<%-- todo 9: use c:out to print message fron request --%>
+<%--<%=request.getAttribute("message")%>--%>
+
+<c:out value="${requestScope.message}"/>
+
+
+
+<%--todo 1: use c:url to set url in action="validate.jsp" --%>
+<%--<c:url var="v" value="/Lab1/assignment2/validate.jsp">--%>
+<%--<c:param name="username" value="username"/>&ndash;%&gt;--%>
+<%-- <c:param name="password" value="password"/>&ndash;%&gt;--%>
+<%--</c:url>--%>
+
+<form action="<c:url value="/Lab1/assignment2/validate.jsp" />">
+    Username : <input type="text" name="username"><br>
+    Password : <input type="password" name="password"><br>
+    <input type="submit" value="Login"/>
 </form>
-<%@include file="footer.jsp"%>
+
+</body>
+</html>
